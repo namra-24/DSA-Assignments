@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <limits.h> // Required for INT_MAX
+
+// Function to find the second minimum value in an array
+int findSecondMinimum(int arr[], int n) {
+    if (n < 2) {
+        printf("Error: Array must have at least two elements.\n");
+        return INT_MAX;
+    }
+
+    int min_val = INT_MAX;
+    int secondMin = INT_MAX;
+
+    for (int i = 0; i < n; i++) {
+        if (arr[i] < min_val) {
+            // New minimum found, shift old min to secondMin
+            secondMin = min_val;
+            min_val = arr[i];
+        } else if (arr[i] < secondMin && arr[i] != min_val) {
+            // Found a value that is greater than min_val but less than secondMin
+            secondMin = arr[i];
+        }
+    }
+    // Check if the second minimum was ever updated
+    if (secondMin == INT_MAX && min_val != INT_MAX) {
+        printf("Warning: All elements in the array might be identical.\n");
+    }
+
+    return secondMin;
+}
+
+int main() {
+    int arr[] = {15, 8, 2, 10, 5, 20, 2}; // Test with duplicates
+    int n = sizeof(arr) / sizeof(arr[0]);
+
+    printf("Array: ");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+    int second_minimum = findSecondMinimum(arr, n);
+
+    if (second_minimum != INT_MAX) {
+        printf("The second minimum element is: %d\n", second_minimum);
+    }
+
+    return 0;
+}
