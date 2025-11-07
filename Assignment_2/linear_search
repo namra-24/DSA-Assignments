@@ -1,0 +1,33 @@
+#include <stdio.h>
+
+// Function to perform Linear Search
+int linearSearch(int arr[], int n, int key) {
+    for (int i = 0; i < n; i++) {
+        if (arr[i] == key) {
+            return i; // Return the index where the key is found
+        }
+    }
+    return -1; // Return -1 if the key is not found
+}
+
+int main() {
+    int arr[] = {5, 11, 6, 13, 12, 7}; // Unsorted array is fine for linear search
+    int n = sizeof(arr) / sizeof(arr[0]);
+    int key_to_find = 12;
+
+    printf("Array: ");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+    int index = linearSearch(arr, n, key_to_find);
+
+    if (index != -1) {
+        printf("Linear Search: Element %d found at index %d.\n", key_to_find, index);
+    } else {
+        printf("Linear Search: Element %d not found.\n", key_to_find);
+    }
+
+    return 0;
+}
