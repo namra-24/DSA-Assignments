@@ -1,0 +1,52 @@
+#include <stdio.h>
+
+// Function to swap two elements
+void swap(int* a, int* b) {
+    int t = *a;
+    *a = *b;
+    *b = t;
+}
+
+// Function to print an array
+void printArray(int arr[], int size) {
+    for (int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+}
+
+// Main Selection Sort function
+void selectionSort(int arr[], int n) {
+    int i, j, min_idx;
+
+    // Move boundary of unsorted subarray one by one
+    for (i = 0; i < n - 1; i++) {
+        // Find the index of the minimum element in the unsorted subarray
+        min_idx = i;
+        for (j = i + 1; j < n; j++) {
+            if (arr[j] < arr[min_idx]) {
+                min_idx = j;
+            }
+        }
+
+        // Swap the minimum element with the current element at position i
+        if (min_idx != i) {
+            swap(&arr[min_idx], &arr[i]);
+        }
+    }
+}
+
+int main() {
+    int arr[] = {64, 25, 12, 22, 11, 100, 3};
+    int n = sizeof(arr) / sizeof(arr[0]);
+
+    printf("Original Array for Selection Sort: ");
+    printArray(arr, n);
+
+    selectionSort(arr, n);
+
+    printf("Array after Selection Sort:      ");
+    printArray(arr, n);
+
+    return 0;
+}
