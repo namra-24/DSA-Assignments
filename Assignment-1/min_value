@@ -1,1 +1,36 @@
+#include <stdio.h>
+#include <limits.h> // Required for INT_MAX
 
+// Function to find the minimum value in an array
+int findMinimum(int arr[], int n) {
+    if (n <= 0) {
+        printf("Error: Array is empty.\n");
+        return INT_MAX;
+    }
+    int min_val = arr[0];
+    for (int i = 1; i < n; i++) {
+        if (arr[i] < min_val) {
+            min_val = arr[i];
+        }
+    }
+    return min_val;
+}
+
+int main() {
+    int arr[] = {15, 8, 20, 10, 5, 2};
+    int n = sizeof(arr) / sizeof(arr[0]);
+
+    printf("Array: ");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+    int min_value = findMinimum(arr, n);
+
+    if (min_value != INT_MAX) {
+        printf("The minimum value in the array is: %d\n", min_value);
+    }
+
+    return 0;
+}
